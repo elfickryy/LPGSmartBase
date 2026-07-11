@@ -1,0 +1,17 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+        <TextView android:id="@+id/dashboard_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LPG SmartBase" android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+        <TextView android:id="@+id/dashboard_subtitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_customers" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="Pelanggan" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_allocations" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Jatah Tabung" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_deposits" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Titipan Tabung" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_stock" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Stok Tabung" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_transactions" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Transaksi" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_receipts" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Nota" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_debts" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Hutang" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_reports" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Laporan" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_backup" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Backup &amp; Restore" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_settings" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Pengaturan" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/menu_printer" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Bluetooth Printer" />
+    </LinearLayout>
+</ScrollView>
