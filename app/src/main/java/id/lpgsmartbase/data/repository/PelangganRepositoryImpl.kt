@@ -6,4 +6,4 @@ import id.lpgsmartbase.domain.model.Pelanggan
 import id.lpgsmartbase.domain.repository.PelangganRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-class PelangganRepositoryImpl(private val dao: PelangganDao) : PelangganRepository { override fun observeAll(): Flow<List<Pelanggan>> = dao.observeAll().map { it.map { entity -> entity.toDomain() } }; override suspend fun tambah(pelanggan: Pelanggan) = dao.insert(pelanggan.toEntity()) }
+class PelangganRepositoryImpl(private val dao: PelangganDao) : PelangganRepository { override fun observeAll(): Flow<List<Pelanggan>> = dao.observeAll().map { it.map { entity -> entity.toDomain() } }; override suspend fun tambah(pelanggan: Pelanggan) = dao.insert(pelanggan.toEntity()); override suspend fun nonaktifkan(id: Long) = dao.nonaktifkan(id) }

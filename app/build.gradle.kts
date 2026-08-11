@@ -14,4 +14,5 @@ dependencies {
     implementation(libs.core.ktx); implementation(libs.appcompat); implementation(libs.material); implementation(libs.constraintlayout)
     implementation(libs.lifecycle.runtime); implementation(libs.lifecycle.viewmodel); implementation(libs.navigation.fragment); implementation(libs.navigation.ui)
     implementation(libs.room.runtime); implementation(libs.room.ktx); kapt(libs.room.compiler)
+    implementation(libs.recyclerview)
 }

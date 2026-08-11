@@ -8,6 +8,7 @@ constraintlayout = "2.2.0"
 lifecycle = "2.8.7"
 navigation = "2.8.5"
 room = "2.6.1"
+recyclerview = "1.3.2"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
@@ -21,6 +22,7 @@ navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref 
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
