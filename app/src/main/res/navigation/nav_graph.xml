@@ -1,16 +1,3 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph" app:startDestination="@id/dashboardFragment">
-    <fragment android:id="@+id/dashboardFragment" android:name="id.lpgsmartbase.presentation.dashboard.DashboardFragment" android:label="Dashboard">
-        <action android:id="@+id/to_customers" app:destination="@id/customersFragment" />
-    </fragment>
-    <fragment android:id="@+id/customersFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Pelanggan"><argument android:name="title" android:defaultValue="Pelanggan" /></fragment>
-    <fragment android:id="@+id/allocationsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Jatah Tabung"><argument android:name="title" android:defaultValue="Jatah Tabung" /></fragment>
-    <fragment android:id="@+id/depositsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Titipan Tabung"><argument android:name="title" android:defaultValue="Titipan Tabung" /></fragment>
-    <fragment android:id="@+id/stockFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Stok"><argument android:name="title" android:defaultValue="Stok" /></fragment>
-    <fragment android:id="@+id/transactionsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Transaksi"><argument android:name="title" android:defaultValue="Transaksi" /></fragment>
-    <fragment android:id="@+id/receiptsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Nota"><argument android:name="title" android:defaultValue="Nota" /></fragment>
-    <fragment android:id="@+id/debtsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Hutang"><argument android:name="title" android:defaultValue="Hutang" /></fragment>
-    <fragment android:id="@+id/reportsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Laporan"><argument android:name="title" android:defaultValue="Laporan" /></fragment>
-    <fragment android:id="@+id/backupFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Backup &amp; Restore"><argument android:name="title" android:defaultValue="Backup &amp; Restore" /></fragment>
-    <fragment android:id="@+id/settingsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Pengaturan"><argument android:name="title" android:defaultValue="Pengaturan" /></fragment>
-    <fragment android:id="@+id/printerFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Bluetooth Printer"><argument android:name="title" android:defaultValue="Bluetooth Printer" /></fragment>
+    <fragment android:id="@+id/dashboardFragment" android:name="id.lpgsmartbase.ui.dashboard.DashboardFragment" android:label="Dashboard" />
 </navigation>
