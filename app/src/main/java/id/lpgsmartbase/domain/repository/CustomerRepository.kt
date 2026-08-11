@@ -1,9 +1,9 @@
 package id.lpgsmartbase.domain.repository
 
-import id.lpgsmartbase.data.local.entity.CustomerEntity
+import id.lpgsmartbase.domain.model.Customer
 import kotlinx.coroutines.flow.Flow
 
 interface CustomerRepository {
-    fun observeActive(): Flow<List<CustomerEntity>>
-    suspend fun add(customer: CustomerEntity): Long
+    fun observeActive(): Flow<List<Customer>>
+    suspend fun add(customer: Customer): Long
 }

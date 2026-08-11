@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <application android:allowBackup="true" android:label="LPG SmartBase" android:theme="@style/Theme.LPGSmartBase">
+    <application android:name=".LpgSmartBaseApp" android:allowBackup="true" android:label="LPG SmartBase" android:theme="@style/Theme.LPGSmartBase">
         <activity android:name=".presentation.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

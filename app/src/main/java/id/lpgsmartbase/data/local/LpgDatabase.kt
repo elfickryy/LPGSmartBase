@@ -11,4 +11,6 @@ import id.lpgsmartbase.data.local.entity.StockMovementEntity
 abstract class LpgDatabase : RoomDatabase() {
     abstract fun customerDao(): CustomerDao
     abstract fun stockMovementDao(): StockMovementDao
+
+    companion object { const val DATABASE_NAME = "lpg_smartbase.db" }
 }

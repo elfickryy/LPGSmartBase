@@ -10,7 +10,7 @@
     <fragment android:id="@+id/receiptsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Nota"><argument android:name="title" android:defaultValue="Nota" /></fragment>
     <fragment android:id="@+id/debtsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Hutang"><argument android:name="title" android:defaultValue="Hutang" /></fragment>
     <fragment android:id="@+id/reportsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Laporan"><argument android:name="title" android:defaultValue="Laporan" /></fragment>
-    <fragment android:id="@+id/backupFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Backup & Restore"><argument android:name="title" android:defaultValue="Backup & Restore" /></fragment>
+    <fragment android:id="@+id/backupFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Backup &amp; Restore"><argument android:name="title" android:defaultValue="Backup &amp; Restore" /></fragment>
     <fragment android:id="@+id/settingsFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Pengaturan"><argument android:name="title" android:defaultValue="Pengaturan" /></fragment>
     <fragment android:id="@+id/printerFragment" android:name="id.lpgsmartbase.presentation.feature.FeatureFragment" android:label="Bluetooth Printer"><argument android:name="title" android:defaultValue="Bluetooth Printer" /></fragment>
 </navigation>
