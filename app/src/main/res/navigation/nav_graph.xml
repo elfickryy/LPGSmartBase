@@ -1,3 +1,1 @@
-<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph" app:startDestination="@id/dashboardFragment">
-    <fragment android:id="@+id/dashboardFragment" android:name="id.lpgsmartbase.ui.dashboard.DashboardFragment" android:label="Dashboard" />
-</navigation>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph" app:startDestination="@id/dashboardFragment"><fragment android:id="@+id/dashboardFragment" android:name="id.lpgsmartbase.ui.dashboard.DashboardFragment" android:label="Dashboard"><action android:id="@+id/to_pelanggan" app:destination="@id/pelangganFragment"/></fragment><fragment android:id="@+id/pelangganFragment" android:name="id.lpgsmartbase.ui.pelanggan.PelangganFragment" android:label="Pelanggan"/></navigation>

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "fa7325ae5f18cc434ffc625f6d8a180c",
+    "identityHash": "74f3376991f8875789c0b8d282f50f4c",
     "entities": [
       {
         "tableName": "pelanggan",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `kode` TEXT NOT NULL, `nama` TEXT NOT NULL, `alamat` TEXT NOT NULL, `telepon` TEXT NOT NULL, `aktif` INTEGER NOT NULL, `dibuatPada` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `kode` TEXT NOT NULL, `nama` TEXT NOT NULL, `alamat` TEXT NOT NULL, `telepon` TEXT NOT NULL, `aktif` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -43,12 +43,6 @@
             "columnName": "aktif",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "dibuatPada",
-            "columnName": "dibuatPada",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -57,38 +51,28 @@
             "id"
           ]
         },
-        "indices": [
-          {
-            "name": "index_pelanggan_kode",
-            "unique": true,
-            "columnNames": [
-              "kode"
-            ],
-            "orders": [],
-            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pelanggan_kode` ON `${TABLE_NAME}` (`kode`)"
-          }
-        ],
+        "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "stok",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`jenisTabung` TEXT NOT NULL, `stokIsi` INTEGER NOT NULL, `stokKosong` INTEGER NOT NULL, `diperbaruiPada` INTEGER NOT NULL, PRIMARY KEY(`jenisTabung`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`jenis` TEXT NOT NULL, `isi` INTEGER NOT NULL, `kosong` INTEGER NOT NULL, `diperbaruiPada` INTEGER NOT NULL, PRIMARY KEY(`jenis`))",
         "fields": [
           {
-            "fieldPath": "jenisTabung",
-            "columnName": "jenisTabung",
+            "fieldPath": "jenis",
+            "columnName": "jenis",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "stokIsi",
-            "columnName": "stokIsi",
+            "fieldPath": "isi",
+            "columnName": "isi",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "stokKosong",
-            "columnName": "stokKosong",
+            "fieldPath": "kosong",
+            "columnName": "kosong",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -102,7 +86,7 @@
         "primaryKey": {
           "autoGenerate": false,
           "columnNames": [
-            "jenisTabung"
+            "jenis"
           ]
         },
         "indices": [],
@@ -110,7 +94,7 @@
       },
       {
         "tableName": "transaksi",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nomorNota` TEXT NOT NULL, `pelangganId` INTEGER NOT NULL, `jenisTabung` TEXT NOT NULL, `jumlah` INTEGER NOT NULL, `hargaSatuan` INTEGER NOT NULL, `total` INTEGER NOT NULL, `dibayar` INTEGER NOT NULL, `waktu` INTEGER NOT NULL, `keterangan` TEXT NOT NULL, FOREIGN KEY(`pelangganId`) REFERENCES `pelanggan`(`id`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nomorNota` TEXT NOT NULL, `pelangganId` INTEGER NOT NULL, `jumlah` INTEGER NOT NULL, `total` INTEGER NOT NULL, `dibayar` INTEGER NOT NULL, `waktu` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -131,20 +115,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "jenisTabung",
-            "columnName": "jenisTabung",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "jumlah",
             "columnName": "jumlah",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "hargaSatuan",
-            "columnName": "hargaSatuan",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -165,12 +137,6 @@
             "columnName": "waktu",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "keterangan",
-            "columnName": "keterangan",
-            "affinity": "TEXT",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -179,43 +145,12 @@
             "id"
           ]
         },
-        "indices": [
-          {
-            "name": "index_transaksi_pelangganId",
-            "unique": false,
-            "columnNames": [
-              "pelangganId"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_transaksi_pelangganId` ON `${TABLE_NAME}` (`pelangganId`)"
-          },
-          {
-            "name": "index_transaksi_nomorNota",
-            "unique": true,
-            "columnNames": [
-              "nomorNota"
-            ],
-            "orders": [],
-            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_transaksi_nomorNota` ON `${TABLE_NAME}` (`nomorNota`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "pelanggan",
-            "onDelete": "RESTRICT",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "pelangganId"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
+        "indices": [],
+        "foreignKeys": []
       },
       {
         "tableName": "jatah",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pelangganId` INTEGER NOT NULL, `periode` TEXT NOT NULL, `jumlahJatah` INTEGER NOT NULL, `jumlahTerealisasi` INTEGER NOT NULL, FOREIGN KEY(`pelangganId`) REFERENCES `pelanggan`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pelangganId` INTEGER NOT NULL, `periode` TEXT NOT NULL, `jumlah` INTEGER NOT NULL, `realisasi` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -236,14 +171,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "jumlahJatah",
-            "columnName": "jumlahJatah",
+            "fieldPath": "jumlah",
+            "columnName": "jumlah",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "jumlahTerealisasi",
-            "columnName": "jumlahTerealisasi",
+            "fieldPath": "realisasi",
+            "columnName": "realisasi",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -254,35 +189,12 @@
             "id"
           ]
         },
-        "indices": [
-          {
-            "name": "index_jatah_pelangganId_periode",
-            "unique": true,
-            "columnNames": [
-              "pelangganId",
-              "periode"
-            ],
-            "orders": [],
-            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_jatah_pelangganId_periode` ON `${TABLE_NAME}` (`pelangganId`, `periode`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "pelanggan",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "pelangganId"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
+        "indices": [],
+        "foreignKeys": []
       },
       {
         "tableName": "kas",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tipe` TEXT NOT NULL, `nominal` INTEGER NOT NULL, `keterangan` TEXT NOT NULL, `waktu` INTEGER NOT NULL, `referensi` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tipe` TEXT NOT NULL, `nominal` INTEGER NOT NULL, `keterangan` TEXT NOT NULL, `waktu` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -313,12 +225,6 @@
             "columnName": "waktu",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "referensi",
-            "columnName": "referensi",
-            "affinity": "TEXT",
-            "notNull": false
           }
         ],
         "primaryKey": {
@@ -360,7 +266,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fa7325ae5f18cc434ffc625f6d8a180c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '74f3376991f8875789c0b8d282f50f4c')"
     ]
   }
 }
