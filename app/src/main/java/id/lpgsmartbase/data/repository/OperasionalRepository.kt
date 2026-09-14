@@ -18,12 +18,16 @@ class OperasionalRepository(private val database: LpgDatabase) {
         database.operasionalDao().mutasi(MutasiStokEntity(jenis = input.jenisTabung, perubahanIsi = -input.jumlah, perubahanKosong = input.jumlah, tipe = "PENJUALAN", referensi = input.nomorNota, catatan = input.catatan))
         if (input.pelangganId != null && input.periodeJatah != null) {
             val jatah = database.operasionalDao().jatah(input.pelangganId, input.periodeJatah)
-            if (jatah != null) { database.operasionalDao().simpanJatah(jatah.copy(realisasi = jatah.realisasi + input.jumlah)); database.operasionalDao().historiJatah(HistoriJatahEntity(pelangganId = input.pelangganId, periode = input.periodeJatah, tipe = "PENGAMBILAN", jumlah = input.jumlah, referensi = input.nomorNota)) }
+            requireNotNull(jatah) { "Jatah pelanggan belum ditetapkan" }
+            OperasionalRules.validasiAlokasi(jatah.jumlah - jatah.realisasi, Int.MAX_VALUE, input.jumlah, false)
+            database.operasionalDao().simpanJatah(jatah.copy(realisasi = jatah.realisasi + input.jumlah)); database.operasionalDao().historiJatah(HistoriJatahEntity(pelangganId = input.pelangganId, periode = input.periodeJatah, tipe = "PENJUALAN", jumlah = input.jumlah, referensi = input.nomorNota))
         }
         HasilPenjualan(transaksiId, status)
     }
     suspend fun catatTitipan(pelangganId: Long, periode: String, titip: Int, kosongMilikPelanggan: Int, isiDiambil: Int, catatan: String) = database.withTransaction {
         require(titip >= 0 && kosongMilikPelanggan >= 0 && isiDiambil >= 0) { "Jumlah tabung tidak valid" }
+        val saldo = database.operasionalDao().saldoTitipan(pelangganId)?.saldo ?: 0
+        database.operasionalDao().simpanSaldoTitipan(SaldoTitipanEntity(pelangganId, saldo + titip))
         database.operasionalDao().titip(TitipTabungEntity(pelangganId = pelangganId, jumlahTitipan = titip, jumlahKosongMilikPelanggan = kosongMilikPelanggan, jumlahIsiDiambil = isiDiambil, catatan = catatan))
         database.operasionalDao().historiJatah(HistoriJatahEntity(pelangganId = pelangganId, periode = periode, tipe = "TITIP", jumlah = titip, referensi = "TITIPAN"))
     }

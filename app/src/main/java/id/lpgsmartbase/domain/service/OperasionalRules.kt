@@ -11,4 +11,5 @@ object OperasionalRules {
     }
     fun statusPembayaran(total: Long, dibayar: Long): StatusPembayaran = when { dibayar == 0L -> StatusPembayaran.BELUM_DIBAYAR; dibayar == total -> StatusPembayaran.SUDAH_DIBAYAR; else -> StatusPembayaran.SEBAGIAN }
     fun sisaJatah(jatah: Int, diambil: Int): Int = (jatah - diambil).coerceAtLeast(0)
+    fun validasiAlokasi(jatahTersisa: Int, titipanTersisa: Int, jumlah: Int, ambilTitipan: Boolean) { require(jumlah > 0) { "Jumlah tabung harus lebih dari nol" }; require(jumlah <= jatahTersisa) { "Jatah pelanggan tidak mencukupi" }; if (ambilTitipan) require(jumlah <= titipanTersisa) { "Saldo titipan tidak mencukupi" } }
 }

@@ -17,4 +17,5 @@ object DatabaseMigrations {
             db.execSQL("CREATE TABLE IF NOT EXISTS titip_tabung (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, pelangganId INTEGER NOT NULL, jumlahTitipan INTEGER NOT NULL, jumlahKosongMilikPelanggan INTEGER NOT NULL, jumlahIsiDiambil INTEGER NOT NULL, waktu INTEGER NOT NULL, catatan TEXT NOT NULL)")
         }
     }
+    val V2_TO_V3 = object : Migration(2, 3) { override fun migrate(db: SupportSQLiteDatabase) { db.execSQL("ALTER TABLE transaksi ADD COLUMN jenisTransaksi TEXT NOT NULL DEFAULT 'PENJUALAN'"); db.execSQL("ALTER TABLE transaksi ADD COLUMN sumberTabung TEXT NOT NULL DEFAULT 'STOK'"); db.execSQL("CREATE TABLE IF NOT EXISTS saldo_titipan (pelangganId INTEGER NOT NULL PRIMARY KEY, saldo INTEGER NOT NULL, diperbaruiPada INTEGER NOT NULL)") } }
 }
