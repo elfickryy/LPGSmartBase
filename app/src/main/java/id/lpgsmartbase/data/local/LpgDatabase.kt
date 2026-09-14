@@ -5,8 +5,8 @@ import androidx.room.RoomDatabase
 import id.lpgsmartbase.data.local.dao.*
 import id.lpgsmartbase.data.local.entity.*
 
-@Database(entities = [PelangganEntity::class, StokEntity::class, TransaksiEntity::class, JatahEntity::class, KasEntity::class, SettingEntity::class], version = 1, exportSchema = true)
+@Database(entities = [PelangganEntity::class, StokEntity::class, MutasiStokEntity::class, TransaksiEntity::class, JatahEntity::class, HistoriJatahEntity::class, TitipTabungEntity::class, KasEntity::class, SettingEntity::class], version = 2, exportSchema = true)
 abstract class LpgDatabase : RoomDatabase() {
-    abstract fun pelangganDao(): PelangganDao; abstract fun stokDao(): StokDao; abstract fun transaksiDao(): TransaksiDao; abstract fun jatahDao(): JatahDao; abstract fun kasDao(): KasDao; abstract fun settingDao(): SettingDao
+    abstract fun pelangganDao(): PelangganDao; abstract fun stokDao(): StokDao; abstract fun transaksiDao(): TransaksiDao; abstract fun jatahDao(): JatahDao; abstract fun kasDao(): KasDao; abstract fun settingDao(): SettingDao; abstract fun operasionalDao(): OperasionalDao
     companion object { const val NAME = "lpg_smartbase.db" }
 }

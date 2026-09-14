@@ -15,4 +15,5 @@ dependencies {
     implementation(libs.lifecycle.runtime); implementation(libs.lifecycle.viewmodel); implementation(libs.navigation.fragment); implementation(libs.navigation.ui)
     implementation(libs.room.runtime); implementation(libs.room.ktx); kapt(libs.room.compiler)
     implementation(libs.recyclerview)
+    testImplementation("junit:junit:4.13.2")
 }
