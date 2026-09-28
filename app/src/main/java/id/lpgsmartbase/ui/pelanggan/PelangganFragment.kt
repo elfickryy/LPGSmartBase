@@ -15,12 +15,14 @@ import id.lpgsmartbase.data.repository.PelangganRepositoryImpl
 import id.lpgsmartbase.databinding.FragmentPelangganBinding
 import id.lpgsmartbase.databinding.DialogPelangganBinding
 import kotlinx.coroutines.launch
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 
 class PelangganFragment : Fragment(R.layout.fragment_pelanggan) {
     private var _binding: FragmentPelangganBinding? = null
     private val binding get() = requireNotNull(_binding)
     private val viewModel: PelangganViewModel by viewModels { PelangganViewModelFactory(PelangganRepositoryImpl((requireActivity().application as LpgSmartBaseApp).database.pelangganDao())) }
-    private val adapter = PelangganAdapter { pelanggan -> MaterialAlertDialogBuilder(requireContext()).setTitle("Nonaktifkan pelanggan?").setMessage(pelanggan.nama).setNegativeButton("Batal", null).setPositiveButton("Nonaktifkan") { _, _ -> viewModel.nonaktifkan(pelanggan.id) }.show() }
+    private val adapter = PelangganAdapter { pelanggan -> findNavController().navigate(R.id.to_customer_detail, bundleOf("id" to pelanggan.id)) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentPelangganBinding.bind(view); binding.recycler.layoutManager = LinearLayoutManager(requireContext()); binding.recycler.adapter = adapter
         binding.tambah.setOnClickListener { tampilkanForm() }

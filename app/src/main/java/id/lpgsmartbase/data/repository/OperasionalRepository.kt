@@ -14,6 +14,7 @@ class OperasionalRepository(private val database: LpgDatabase) {
         val total = input.jumlah * input.hargaJual
         val status = OperasionalRules.statusPembayaran(total, input.dibayar)
         val transaksiId = database.transaksiDao().insert(TransaksiEntity(nomorNota = input.nomorNota, pelangganId = input.pelangganId, jumlah = input.jumlah, hargaJual = input.hargaJual, hargaModal = input.hargaModal, total = total, dibayar = input.dibayar, statusPembayaran = status.name, catatan = input.catatan))
+        if (input.dibayar > 0) database.kasDao().insert(KasEntity(tipe = "MASUK", nominal = input.dibayar, keterangan = "Pembayaran ${input.nomorNota}"))
         database.stokDao().save(stok.copy(isi = stok.isi - input.jumlah, kosong = stok.kosong + input.jumlah, diperbaruiPada = System.currentTimeMillis()))
         database.operasionalDao().mutasi(MutasiStokEntity(jenis = input.jenisTabung, perubahanIsi = -input.jumlah, perubahanKosong = input.jumlah, tipe = "PENJUALAN", referensi = input.nomorNota, catatan = input.catatan))
         if (input.pelangganId != null && input.periodeJatah != null) {
@@ -41,6 +42,7 @@ class OperasionalRepository(private val database: LpgDatabase) {
         OperasionalRules.validasiAlokasi(jatah.jumlah - jatah.realisasi, titipan, input.jumlah, true)
         val total = input.jumlah * input.hargaJual; val status = OperasionalRules.statusPembayaran(total, input.dibayar)
         val id = database.transaksiDao().insert(TransaksiEntity(nomorNota=input.nomorNota, pelangganId=input.pelangganId, jumlah=input.jumlah, hargaJual=input.hargaJual, hargaModal=input.hargaModal, total=total, dibayar=input.dibayar, statusPembayaran=status.name, jenisTransaksi="AMBIL_TITIPAN", sumberTabung="TITIPAN", catatan=input.catatan))
+        if (input.dibayar > 0) database.kasDao().insert(KasEntity(tipe = "MASUK", nominal = input.dibayar, keterangan = "Pembayaran ${input.nomorNota}"))
         database.stokDao().save(stok.copy(isi=stok.isi-input.jumlah, kosong=stok.kosong+input.jumlah, diperbaruiPada=System.currentTimeMillis()))
         database.operasionalDao().simpanJatah(jatah.copy(realisasi=jatah.realisasi+input.jumlah))
         database.operasionalDao().simpanSaldoTitipan(SaldoTitipanEntity(input.pelangganId, titipan-input.jumlah))

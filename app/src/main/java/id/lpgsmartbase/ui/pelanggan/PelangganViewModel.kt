@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class PelangganViewModel(private val repository: PelangganRepository) : ViewModel() {
     val pelanggan = repository.observeAll().stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
     fun simpan(kode: String, nama: String, alamat: String, telepon: String) = viewModelScope.launch { repository.tambah(Pelanggan(kode = kode, nama = nama, alamat = alamat, telepon = telepon)) }
+    fun update(data: Pelanggan) = viewModelScope.launch { repository.update(data) }
     fun nonaktifkan(id: Long) = viewModelScope.launch { repository.nonaktifkan(id) }
 }
 class PelangganViewModelFactory(private val repository: PelangganRepository) : ViewModelProvider.Factory {
